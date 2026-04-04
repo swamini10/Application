@@ -20,17 +20,17 @@ public class SpringbootBackendApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		//  TODO Auto-generated method stub
 
-		Employee employee = new Employee();
-		employee.setFirstName("Swami");
-		employee.setLastName("Bhandare");
-		employee.setEmailId("swamini@10gmail.com");
-		employeeRepository.save(employee);
+		// Employee employee = new Employee();
+		// employee.setFirstName("Swami");
+		// employee.setLastName("Bhandare");
+		// employee.setEmailId("swamini@10gmail.com");
+		// employeeRepository.save(employee);
 
-		Employee employee1 = new Employee();
-		employee1.setFirstName("Soham");
-		employee1.setLastName("Mali");
-		employee1.setEmailId("soham@10gmail.com");
-		employeeRepository.save(employee1);
+		// Employee employee1 = new Employee();
+		// employee1.setFirstName("Soham");
+		// employee1.setLastName("Mali");
+		// employee1.setEmailId("soham@10gmail.com");
+		// employeeRepository.save(employee1);
 
 	}
 
