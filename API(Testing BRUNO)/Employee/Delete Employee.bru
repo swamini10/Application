@@ -1,0 +1,16 @@
+meta {
+  name: Delete Employee
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:8080/api/v1/employees/4
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
