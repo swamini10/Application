@@ -25,6 +25,7 @@ useEffect(() => {
                         <th>Employee First Name</th>
                         <th>Employee Last Name</th>
                         <th>Employee Email Id</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,9 @@ useEffect(() => {
                             <td>{employee.firstName}</td>
                             <td>{employee.lastName}</td>
                             <td>{employee.emailId}</td>
+                            <td>
+                                <Link className='btn btn-info' to={`/edit-employee/${employee.id}`}>Update</Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
