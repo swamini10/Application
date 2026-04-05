@@ -11,30 +11,41 @@ const AddEmployeeComponent = () => {
 
 
   useEffect(() => {
-    EmployeeService.getEmployeeById(id).then((response) => {
-      setFirstName(response.data.firstName)
-      setLastName(response.data.lastName)
-      setEmailId(response.data.emailId)
-    }).catch(error => {
-      console.log(error)
-    })
-  }, [])
+    if (id) {
+      EmployeeService.getEmployeeById(id).then((response) => {
+        setFirstName(response.data.firstName)
+        setLastName(response.data.lastName)
+        setEmailId(response.data.emailId)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+  }, [id])
 
 
-  const saveEmployee = (e) => {
+  const saveorupdateEmployee = (e) => {
     e.preventDefault()
     // Handle employee saving logic here
 
     const employee = { firstName, lastName, emailId }
     // console.log(employee)
-
-    EmployeeService.createEmployee(employee).then((response) => {
+    if (id) {
+      EmployeeService.updateEmployee(employee, id).then((response) => {
+        console.log(response.data)
+        navigate('/employees')
+      }).catch(error => {
+        console.log(error)
+      })
+      
+    }else{
+       EmployeeService.createEmployee(employee).then((response) => {
       console.log(response.data)
       navigate('/employees')
 
     }).catch(error => {
       console.log(error)
     })
+    }
 
   }
 
@@ -91,7 +102,7 @@ const AddEmployeeComponent = () => {
                     onChange={(e) => setEmailId(e.target.value)}
                   />
                 </div>
-                <button className='btn btn-success' onClick={(e) => saveEmployee(e)}>Submit</button>
+                <button className='btn btn-success' onClick={(e) => saveorupdateEmployee(e)}>Submit</button>
                 <Link to='/employees' className='btn btn-danger' style={{ marginLeft: "20px" }}>Cancel</Link>
               </form>
             </div>
