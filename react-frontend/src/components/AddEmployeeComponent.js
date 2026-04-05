@@ -1,16 +1,27 @@
-
 import React, { useState } from 'react'
+import {useNavigate, Link} from 'react-router-dom'
+import EmployeeService from '../services/EmployeeService'
 const AddEmployeeComponent = () => {
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [emailId, setEmailId] = useState('')
+  const navigate = useNavigate()
+
   const saveEmployee = (e) => {
     e.preventDefault()
     // Handle employee saving logic here
 
     const employee = { firstName, lastName, emailId }
-    console.log(employee)
+    // console.log(employee)
+
+    EmployeeService.createEmployee(employee).then((response) => {
+      console.log(response.data)
+      navigate('/employees')
+
+    }).catch(error => {
+      console.log(error)
+    })
 
   }
   return (
@@ -55,8 +66,8 @@ const AddEmployeeComponent = () => {
                     onChange={(e) => setEmailId(e.target.value)}
                   />
                 </div>
-
                 <button className='btn btn-success' onClick={(e) => saveEmployee(e)}>Submit</button>
+                <Link to='/employees' className='btn btn-danger' style={{ marginLeft: "20px" }}>Cancel</Link>
               </form>
             </div>
           </div>
