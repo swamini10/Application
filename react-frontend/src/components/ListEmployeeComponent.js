@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
 import EmployeeService from '../services/EmployeeService'
-
 const ListEmployeeComponent = () => {
 
     const[employees, setEmployees]=useState([])
@@ -17,6 +16,7 @@ useEffect(() => {
   return (
     <div className='container'> 
         <h2 className='text-center'>Employees List</h2>
+        <link to ="/add-employee" className='btn btn-primary mb-2'>Add Employee</link>
         <table className='table table-striped table-bordered'>
             <thead>
                     <th>Employee ID</th>
