@@ -6,14 +6,28 @@ const ListEmployeeComponent = () => {
     const[employees, setEmployees]=useState([])
 
 useEffect(() => {
-    EmployeeService.getAllEmployees().then((response) => {
+    getAllEmployees();
+}, [])
+const getAllEmployees = () => {
+     EmployeeService.getAllEmployees().then((response) => {
         setEmployees(response.data);
         console.log(response.data);
     }).catch(error => {
         console.log(error);
     })
-}, [])
+}
 
+ const deleteEmployee = (employeeId) => {
+    EmployeeService.deleteEmployee(employeeId).then((response) => {
+        getAllEmployees();
+    }).catch(error => {
+        if (error.response && error.response.status === 404) {
+            alert("Employee not found or already deleted.");
+        } else {
+            console.log(error);
+        }
+    })
+ }
   return (
         <div className='container'>
             <h2 className='text-center'>List Employees</h2>
@@ -37,6 +51,8 @@ useEffect(() => {
                             <td>{employee.emailId}</td>
                             <td>
                                 <Link className='btn btn-info' to={`/edit-employee/${employee.id}`}>Update</Link>
+                                <button className='btn btn-danger' onClick={() => EmployeeService.deleteEmployee(employee.id)}
+                                    style={{marginLeft:"30px"}}>Delete</button>
                             </td>
                         </tr>
                     ))}
