@@ -1,5 +1,4 @@
 # Application# Employee Management System
-
 A full-stack web application for managing employee records with CRUD operations. Built with Spring Boot backend and React frontend.
 
 ## 🏗️ Architecture
